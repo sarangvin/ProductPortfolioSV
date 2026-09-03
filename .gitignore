@@ -1,0 +1,16 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# In case a build step or npm tooling (e.g. Vercel CLI) gets added later
+node_modules/
+.vercel/
+npm-debug.log*
+
+# Secrets, if any ever get added
+.env
+.env.local

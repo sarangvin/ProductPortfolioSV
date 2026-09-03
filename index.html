@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sarang Vineesh | Product Manager</title>
+<meta name="description" content="Product portfolio of Sarang Vineesh — Lead Product Analyst at Media.net, working across revenue forecasting, programmatic ad tech and product analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232997ff'/><text y='69' x='50' font-size='54' font-family='-apple-system,Helvetica,Arial,sans-serif' font-weight='700' fill='white' text-anchor='middle'>S</text></svg>">
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip" href="#about">Skip to content</a>
+
+<div id="scrollProgress" aria-hidden="true"></div>
+
+<aside class="side-rail side-rail-left" id="railLeft" aria-hidden="true"></aside>
+<aside class="side-rail side-rail-right" id="railRight" aria-hidden="true"></aside>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <span class="brand-badge">SV</span>
+      <span class="brand-text">Sarang <span class="brand-dim">| Portfolio</span></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Sections">
+      <a href="#impact">Impact</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#learning">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle colour theme" title="Toggle theme">
+        <span class="theme-ico"></span>
+      </button>
+      <a class="btn btn-sm btn-primary" id="navResume" href="#" download>Resume</a>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <canvas class="stars" id="stars" aria-hidden="true"></canvas>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="wrap hero-in">
+    <h1 class="hero-name" id="heroName"></h1>
+    <p class="hero-role" id="heroRole"></p>
+    <p class="hero-subrole" id="heroSubRole"></p>
+    <div class="hero-rule" aria-hidden="true"><i></i><b></b><i></i><b></b><i></i></div>
+
+    <p class="hero-tag" id="heroTag"></p>
+    <p class="hero-tag hero-tag-2" id="heroTag2"></p>
+
+    <ul class="hero-chips" id="heroChips"></ul>
+  </div>
+
+  <div class="wrap hero-foot">
+    <ul class="hero-stats" id="heroStats"></ul>
+    <div class="hero-ctas">
+      <a class="btn btn-ghost" id="ctaEmail" href="#">Email me</a>
+      <a class="btn btn-ghost" id="ctaLinkedIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-primary" id="ctaResume" href="#" download>Download CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IMPACT DASHBOARD ===================== -->
+<section class="sec" id="impact">
+  <div class="wrap">
+    <p class="eyebrow reveal">Dashboard</p>
+    <h2 class="h2 reveal">Impact at a glance</h2>
+    <p class="lede reveal">The numbers I am actually accountable for — pulled straight from what I own and what I have shipped.</p>
+
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <div class="rail-card reveal">
+      <div class="rail-head">
+        <h3>Career rail</h3>
+        <span class="rail-sub" id="railSpan"></span>
+      </div>
+      <div class="rail" id="rail"></div>
+      <div class="rail-legend" id="railLegend"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <p class="eyebrow reveal">Introduction</p>
+    <h2 class="h2 reveal">About me</h2>
+
+    <div class="about-grid">
+      <div class="about-copy reveal" id="aboutCopy"></div>
+      <aside class="about-card reveal">
+        <div class="about-avatar" id="aboutAvatar"></div>
+        <div class="about-meta" id="aboutMeta"></div>
+        <ul class="about-chips" id="aboutChips"></ul>
+      </aside>
+    </div>
+
+    <h3 class="h3 reveal">Core expertise</h3>
+    <div class="exp-grid" id="expGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section class="sec sec-alt" id="experience">
+  <div class="wrap">
+    <p class="eyebrow reveal">Journey</p>
+    <h2 class="h2 reveal">Professional experience</h2>
+    <p class="lede reveal">Two years of adtech at Media.net, on top of venture capital, marketplace and health-tech beginnings.</p>
+    <div class="tl" id="timeline"></div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <p class="eyebrow reveal">Toolkit</p>
+    <h2 class="h2 reveal">Skills</h2>
+    <p class="lede reveal">What I use to build, measure and argue for products — across product craft, data, and the ad tech domain itself.</p>
+
+    <div class="filters" id="skillFilters" role="tablist" aria-label="Skill categories"></div>
+    <ul class="chip-grid" id="skillGrid"></ul>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section class="sec sec-alt" id="projects">
+  <div class="wrap">
+    <p class="eyebrow reveal">Selected work</p>
+    <h2 class="h2 reveal">Featured projects</h2>
+    <p class="lede reveal">Things I have shipped or currently own. Each one is a real system in production, not a case-study exercise.</p>
+
+    <div class="proj-grid" id="projGrid"></div>
+    <div class="center reveal">
+      <button class="btn btn-ghost" id="moreBtn" type="button">View more projects</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LEARNING ===================== -->
+<section class="sec" id="learning">
+  <div class="wrap">
+    <p class="eyebrow reveal">Background</p>
+    <h2 class="h2 reveal">Certifications &amp; education</h2>
+
+    <div class="split">
+      <div class="reveal">
+        <h3 class="h3">Certifications</h3>
+        <ul class="list" id="certList"></ul>
+      </div>
+      <div class="reveal">
+        <h3 class="h3">Education</h3>
+        <ul class="list" id="eduList"></ul>
+      </div>
+    </div>
+
+    <h3 class="h3 reveal">Beyond work</h3>
+    <div class="beyond-grid" id="beyondGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="sec sec-alt" id="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal">Get in touch</p>
+    <h2 class="h2 reveal">Let us build something that moves a number</h2>
+    <p class="lede reveal">Open to product roles where forecasting, experimentation and monetisation actually matter.</p>
+
+    <div class="contact-grid" id="contactGrid"></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="brand-badge sm">SV</span>
+    <span id="footCopy"></span>
+    <span class="dot">•</span>
+    <span class="avail"><i></i> Available for opportunities</span>
+  </div>
+</footer>
+
+<script src="data.js" defer></script>
+<script src="main.js" defer></script>
+</body>
+</html>
