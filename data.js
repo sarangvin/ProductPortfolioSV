@@ -224,22 +224,10 @@ const DATA = {
       desc: "A personal knowledge base for building understanding of a topic day by day — started as an Obsidian vault with scripting, now growing into its own React/TypeScript web app with an admin panel.",
       metrics: ["Obsidian vault + scripts", "React/TS rebuild in progress"],
       tags: ["Obsidian", "React", "TypeScript"], featured: true },
-    { status: "Ongoing", kind: "Automation", title: "Job Application Bot",
-      desc: "Automates the mechanics of a job search: tracks every application in a Google Sheet through a service account, and drives LinkedIn Easy Apply submissions in bulk once a role is a clear match.",
-      metrics: ["Google Sheets-backed tracker", "Bulk Easy Apply automation"],
-      tags: ["Automation", "Google Sheets", "Job Search"], featured: true },
     { status: "In Progress", kind: "Product", title: "Downtime Optimizer",
       desc: "A FastAPI + Google Calendar app that reads a calendar to surface genuinely free downtime, instead of leaving that to be eyeballed manually.",
       metrics: ["FastAPI backend", "Google OAuth + Calendar API"],
-      tags: ["FastAPI", "Google Calendar", "Scheduling"], featured: false },
-    { status: "Ongoing", kind: "Growth", title: "Twitter Growth Loop",
-      desc: "An A/B virality-testing loop for tweets: post, log impressions, likes and replies at set time windows, then analyse which format, topic and hook actually performed before writing the next one.",
-      metrics: ["Logged engagement time-series", "Categorical performance analysis"],
-      tags: ["Growth", "A/B Testing", "Python"], featured: false },
-    { status: "Shipped", kind: "Meta", title: "SkillTree",
-      desc: "A self-updating, MMORPG-style skill tree that catalogues every Claude Code skill available, tracks usage as XP, and keeps a quest board of what to build next.",
-      metrics: ["Self-updating skill catalogue", "Gamified usage tracking"],
-      tags: ["Meta", "Claude Code", "Automation"], featured: false }
+      tags: ["FastAPI", "Google Calendar", "Scheduling"], featured: true }
   ],
 
   certifications: [
