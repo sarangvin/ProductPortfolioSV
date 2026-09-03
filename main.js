@@ -500,6 +500,7 @@
 
     if (!REDUCED && window.gsap && window.ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
+      gsap.ticker.lagSmoothing(0); // avoid a catch-up jump in the scrub after the tab is backgrounded
       $$(".side-rail .doodle-wrap").forEach(function (el, idx) {
         var depth = 50 + (idx % 5) * 24;
         gsap.to(el, {
@@ -511,15 +512,4 @@
     }
   })();
 
-  /* ---------------------------------------------------- SMOOTH SCROLL (Lenis, progressive) */
-  if (!REDUCED && window.Lenis) {
-    var lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-    if (window.gsap) {
-      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
-      if (window.ScrollTrigger) lenis.on("scroll", ScrollTrigger.update);
-    } else {
-      requestAnimationFrame(function tick(time) { lenis.raf(time); requestAnimationFrame(tick); });
-    }
-  }
 })();
