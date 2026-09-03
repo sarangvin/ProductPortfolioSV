@@ -170,8 +170,8 @@ const DATA = {
     ]}
   ],
 
-  /* ---------- Projects ---------- */
-  projects: [
+  /* ---------- Work projects ---------- */
+  workProjects: [
     { status: "Shipped", kind: "Revenue", title: "Language-Serving Optimisation Model",
       desc: "Built a model that auto-tests and serves the ideal language per geography, replacing manual language mapping and unlocking cross-cultural search ad monetisation.",
       metrics: ["+$25,000/day revenue", "Manual mapping removed"],
@@ -204,6 +204,42 @@ const DATA = {
       desc: "Drove optimisation of news-based publisher prediction models and built a demotion system for new revenue-generating keywords.",
       metrics: ["Publisher model tuning", "Keyword demotion system"],
       tags: ["Publishers", "Prediction", "Revenue"], featured: false }
+  ],
+
+  /* ---------- Hobby projects ---------- */
+  hobbyProjects: [
+    { status: "Ongoing", kind: "Content", title: "Instagram Reel Pipeline",
+      desc: "An end-to-end personal content system: catalogue raw drone, gym and frisbee footage, sequence reels by narrative role, burn in styled captions, and publish straight to Instagram via the Graph API.",
+      metrics: ["Full shoot-to-post pipeline", "Metrics-driven shoot-next loop"],
+      tags: ["Content", "Automation", "Instagram API"], featured: true },
+    { status: "Shipped", kind: "Tooling", title: "RemotionCopy",
+      desc: "A homemade Remotion-style video tool: author reels in React/JSX, preview them live in the browser, and render to MP4 via Playwright + ffmpeg, without pushing 4K/HEVC footage through a headless browser.",
+      metrics: ["React-based reel authoring", "ffmpeg-only footage decode"],
+      tags: ["React", "Video", "ffmpeg"], featured: true },
+    { status: "Shipped", kind: "Product", title: "Ukulele Coach",
+      desc: "A local, no-build web app for structured ukulele and singing practice, with a live review workflow run through chat and progress saved straight to the browser.",
+      metrics: ["Zero-server, zero-build app", "Persistent practice log"],
+      tags: ["Practice", "localStorage", "Music"], featured: true },
+    { status: "Ongoing", kind: "Knowledge", title: "KnowBase",
+      desc: "A personal knowledge base for building understanding of a topic day by day — started as an Obsidian vault with scripting, now growing into its own React/TypeScript web app with an admin panel.",
+      metrics: ["Obsidian vault + scripts", "React/TS rebuild in progress"],
+      tags: ["Obsidian", "React", "TypeScript"], featured: true },
+    { status: "Ongoing", kind: "Automation", title: "Job Application Bot",
+      desc: "Automates the mechanics of a job search: tracks every application in a Google Sheet through a service account, and drives LinkedIn Easy Apply submissions in bulk once a role is a clear match.",
+      metrics: ["Google Sheets-backed tracker", "Bulk Easy Apply automation"],
+      tags: ["Automation", "Google Sheets", "Job Search"], featured: true },
+    { status: "In Progress", kind: "Product", title: "Downtime Optimizer",
+      desc: "A FastAPI + Google Calendar app that reads a calendar to surface genuinely free downtime, instead of leaving that to be eyeballed manually.",
+      metrics: ["FastAPI backend", "Google OAuth + Calendar API"],
+      tags: ["FastAPI", "Google Calendar", "Scheduling"], featured: false },
+    { status: "Ongoing", kind: "Growth", title: "Twitter Growth Loop",
+      desc: "An A/B virality-testing loop for tweets: post, log impressions, likes and replies at set time windows, then analyse which format, topic and hook actually performed before writing the next one.",
+      metrics: ["Logged engagement time-series", "Categorical performance analysis"],
+      tags: ["Growth", "A/B Testing", "Python"], featured: false },
+    { status: "Shipped", kind: "Meta", title: "SkillTree",
+      desc: "A self-updating, MMORPG-style skill tree that catalogues every Claude Code skill available, tracks usage as XP, and keeps a quest board of what to build next.",
+      metrics: ["Self-updating skill catalogue", "Gamified usage tracking"],
+      tags: ["Meta", "Claude Code", "Automation"], featured: false }
   ],
 
   certifications: [

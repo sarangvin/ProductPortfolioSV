@@ -204,35 +204,41 @@
       return s === "Shipped" ? "shipped" : s === "Ongoing" ? "ongoing" : "progress";
     };
 
-    $("#projGrid").innerHTML = DATA.projects.map(function (p, i) {
-      return '<article class="proj reveal' + (p.featured ? "" : " hidden extra") + '" style="--i:' + (i % 6) + '">' +
-               '<div class="proj-head">' +
-                 '<span class="tag-status ' + statusClass(p.status) + '">' + esc(p.status) + "</span>" +
-                 '<span class="tag-kind">' + esc(p.kind) + "</span>" +
-                 '<span class="proj-no">' + String(i + 1).padStart(2, "0") + "</span>" +
-               "</div>" +
-               "<h4>" + esc(p.title) + "</h4><p>" + esc(p.desc) + "</p>" +
-               '<ul class="proj-metrics">' + p.metrics.map(function (m) {
-                   return "<li>" + esc(m) + "</li>";
-                 }).join("") + "</ul>" +
-               '<ul class="proj-tags">' + p.tags.map(function (t) {
-                   return "<li>#" + esc(t) + "</li>";
-                 }).join("") + "</ul>" +
-             "</article>";
-    }).join("");
+    function renderProjects(list, gridSel, btnSel) {
+      var grid = $(gridSel);
+      grid.innerHTML = list.map(function (p, i) {
+        return '<article class="proj reveal' + (p.featured ? "" : " hidden extra") + '" style="--i:' + (i % 6) + '">' +
+                 '<div class="proj-head">' +
+                   '<span class="tag-status ' + statusClass(p.status) + '">' + esc(p.status) + "</span>" +
+                   '<span class="tag-kind">' + esc(p.kind) + "</span>" +
+                   '<span class="proj-no">' + String(i + 1).padStart(2, "0") + "</span>" +
+                 "</div>" +
+                 "<h4>" + esc(p.title) + "</h4><p>" + esc(p.desc) + "</p>" +
+                 '<ul class="proj-metrics">' + p.metrics.map(function (m) {
+                     return "<li>" + esc(m) + "</li>";
+                   }).join("") + "</ul>" +
+                 '<ul class="proj-tags">' + p.tags.map(function (t) {
+                     return "<li>#" + esc(t) + "</li>";
+                   }).join("") + "</ul>" +
+               "</article>";
+      }).join("");
 
-    var btn = $("#moreBtn");
-    var extras = $$(".proj.extra");
-    if (!extras.length) { btn.style.display = "none"; return; }
-    var open = false;
-    btn.addEventListener("click", function () {
-      open = !open;
-      extras.forEach(function (el) {
-        el.classList.toggle("hidden", !open);
-        if (open) requestAnimationFrame(function () { el.classList.add("in"); });
+      var btn = $(btnSel);
+      var extras = $$(".proj.extra", grid);
+      if (!extras.length) { btn.style.display = "none"; return; }
+      var open = false;
+      btn.addEventListener("click", function () {
+        open = !open;
+        extras.forEach(function (el) {
+          el.classList.toggle("hidden", !open);
+          if (open) requestAnimationFrame(function () { el.classList.add("in"); });
+        });
+        btn.textContent = open ? "Show fewer projects" : "View more projects";
       });
-      btn.textContent = open ? "Show fewer projects" : "View more projects";
-    });
+    }
+
+    renderProjects(DATA.workProjects, "#workProjGrid", "#workMoreBtn");
+    renderProjects(DATA.hobbyProjects, "#hobbyProjGrid", "#hobbyMoreBtn");
   })();
 
   /* ---------------------------------------------------- CERTS / EDUCATION / BEYOND */
