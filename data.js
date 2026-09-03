@@ -227,7 +227,11 @@ const DATA = {
     { status: "In Progress", kind: "Product", title: "Downtime Optimizer",
       desc: "A FastAPI + Google Calendar app that reads a calendar to surface genuinely free downtime, instead of leaving that to be eyeballed manually.",
       metrics: ["FastAPI backend", "Google OAuth + Calendar API"],
-      tags: ["FastAPI", "Google Calendar", "Scheduling"], featured: true }
+      tags: ["FastAPI", "Google Calendar", "Scheduling"], featured: true },
+    { status: "Ongoing", kind: "Computer Vision", title: "Ultimate Footage Analyzer",
+      desc: "A hybrid pipeline for finding highlight-worthy moments in raw Ultimate Frisbee footage: a trained disc-proximity classifier flags likely action frames and transcript scanning catches reaction phrases like \"nice catch,\" both cross-checked against a usage log so reel edits never repeat the same clip.",
+      metrics: ["Trained disc-proximity classifier", "Transcript + visual cross-validation"],
+      tags: ["Computer Vision", "Python", "Content"], featured: true }
   ],
 
   certifications: [
