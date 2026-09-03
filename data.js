@@ -39,14 +39,14 @@ const DATA = {
   /* ---------- Hero stat cards ---------- */
   heroStats: [
     { icon: "rocket",      value: "2+",     label: "Years Experience" },
-    { icon: "dollar",      value: "$250K+", label: "Daily Ad Spend Modelled" },
+    { icon: "dollar",      value: "$250K+", label: "Daily Revenue Modelled" },
     { icon: "trending-up", value: "$25K",   label: "Revenue Added / Day" }
   ],
 
   /* ---------- Impact dashboard tiles ----------
      count/prefix/suffix drive the animated counter.        */
   kpis: [
-    { prefix: "$", count: 250, suffix: "K+", label: "Daily ad spend under forecast models",  note: "Google, Microsoft, Yahoo, Bing", tone: "accent" },
+    { prefix: "$", count: 250, suffix: "K+", label: "Daily revenue under forecast models",  note: "Google, Microsoft, Yahoo, Bing", tone: "accent" },
     { prefix: "+$", count: 25, suffix: "K",  label: "Daily revenue added",                   note: "Language-serving optimisation",  tone: "accent" },
     { prefix: "",  count: 3,   suffix: "",    label: "Engineering teams on analytics strategy", note: "Roadmap and build priorities", tone: "ink" },
     { prefix: "",  count: 20,  suffix: "+",   label: "Apps in the in-house analytics suite",  note: "Built 0-to-1",                   tone: "ink" },
