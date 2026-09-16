@@ -220,6 +220,10 @@
                  '<ul class="proj-tags">' + p.tags.map(function (t) {
                      return "<li>#" + esc(t) + "</li>";
                    }).join("") + "</ul>" +
+                 (p.link
+                   ? '<a class="proj-link btn btn-sm btn-ghost" href="' + esc(p.link.href) + '">' +
+                       esc(p.link.label || "Open") + icon("arrow-up-right") + "</a>"
+                   : "") +
                "</article>";
       }).join("");
 

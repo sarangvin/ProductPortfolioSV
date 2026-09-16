@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rabbithole — Economics</title>
+<meta name="description" content="A demo slice of Rabbithole: an Obsidian-style reader over a real Economics vault, centred on Game Theory & Oligopoly.">
+<link rel="stylesheet" href="rabbithole.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23d08a5e'/><g fill='none' stroke='%231a1410' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'><path d='M38 46c-4-10-5-20-2-26 3-5 8-3 10 3 2 6 2 14 1 21'/><path d='M56 46c2-10 4-19 8-24 4-4 8-1 8 5 0 7-4 14-8 19'/><circle cx='47' cy='62' r='16'/><circle cx='41' cy='60' r='2.5' fill='%231a1410'/></g></svg>">
+</head>
+<body>
+
+<a class="skip" href="#reader">Skip to the note</a>
+
+<header class="topbar">
+  <button class="icon-btn drawer-btn" id="drawerBtn" type="button" aria-label="Show file tree" aria-expanded="false"></button>
+
+  <a class="brand" href="../../index.html#projects" title="Back to the portfolio">
+    <span class="brand-mark" id="brandMark"></span>
+    <span class="brand-name">Rabbithole</span>
+  </a>
+
+  <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+
+  <button class="icon-btn graph-btn" id="graphBtn" type="button" aria-label="Show graph" aria-expanded="false"></button>
+</header>
+
+<main class="layout">
+  <div class="scrim" id="scrim" hidden></div>
+
+  <aside class="pane tree-pane" id="treePane" aria-label="Vault">
+    <p class="pane-label">Vault</p>
+    <div class="tree" id="tree"></div>
+  </aside>
+
+  <section class="pane reader-pane" id="reader" tabindex="-1" aria-live="polite">
+    <article class="note" id="note"></article>
+  </section>
+
+  <aside class="pane graph-pane" id="graphPane" aria-label="Graph">
+    <p class="pane-label">Graph</p>
+    <div class="graph-wrap" id="graphWrap"></div>
+    <ul class="legend" id="legend"></ul>
+  </aside>
+</main>
+
+<script src="notes.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

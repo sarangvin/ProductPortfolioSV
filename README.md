@@ -1,9 +1,9 @@
 # Product Portfolio — Sarang Vineesh
 
 A single-page product portfolio / personal dashboard, built from the Sept 2026 resume.
-No build step — plain HTML, CSS and JS, plus two small CDN libraries for motion
-(GSAP + ScrollTrigger, Lenis smooth-scroll). Both are optional: the site is fully
-functional if either fails to load, they only add polish on top.
+No build step — plain HTML, CSS and JS, plus GSAP + ScrollTrigger from a CDN for the
+side-rail parallax. That's optional: the site is fully functional if it fails to load,
+it only adds polish on top.
 
 ## Files
 
@@ -14,14 +14,15 @@ functional if either fails to load, they only add polish on top.
 | `main.js` | Renders `data.js` into the page, icon set, plus interactions |
 | `styles.css` | Design system (colour tokens, type, motion) and layout |
 | `assets/SarangVineesh_Resume.pdf` | The CV served by the Resume / Download buttons |
+| `demo/rabbithole/` | The Rabbithole demo — its own little app, see below |
 
 ## Design system
 
-- **Palette**: Apple's own design tokens — true black/white with Apple's system blue
-  as the one accent (`--accent`, `#2997ff` dark / `#0071e3` light), plus Apple's system
-  green (`--accent2`) and system orange (`--gold`) for the two status pills that need a
-  second semantic colour. No gradients, no neon glow — change the look by editing the
-  tokens at the top of `styles.css`, not by hunting for hardcoded colours.
+- **Palette**: warm ink and terracotta — a single confident accent (`--accent`,
+  `#cc785c` dark / `#b4593c` light), plus a muted sage (`--accent2`) and gold (`--gold`)
+  for the two status pills that need a second semantic colour. No gradients, no neon
+  glow — change the look by editing the tokens at the top of `styles.css`, not by
+  hunting for hardcoded colours.
 - **Type**: the `-apple-system`/`BlinkMacSystemFont` stack, so Mac/iOS visitors see real
   San Francisco; Inter is the loaded web-font fallback for everyone else (SF itself isn't
   legally distributable via a font CDN). One family throughout — hierarchy comes from
@@ -76,8 +77,36 @@ both work with zero configuration as well.
   is remembered in `localStorage`.
 - Responsive down to 375px. The nav collapses to a drawer below 900px.
 - Respects `prefers-reduced-motion` — the starfield, counters, tilt/glow cards,
-  hero parallax, side-rail float and Lenis smooth-scroll all settle instantly.
-- `index.html`'s `<script>` tags for Lenis/GSAP/ScrollTrigger and `data.js`/`main.js`
-  are all `defer`, and in that order — this is load-bearing. `main.js` checks
-  `window.gsap`/`window.Lenis` before using them, but the *order* is what guarantees
-  they exist by the time it runs; don't reorder without keeping that in mind.
+  hero parallax and side-rail float all settle instantly.
+- `index.html`'s `<script>` tags for GSAP/ScrollTrigger and `data.js`/`main.js` are all
+  `defer`, and in that order — this is load-bearing. `main.js` checks `window.gsap`
+  before using it, but the *order* is what guarantees it exists by the time it runs;
+  don't reorder without keeping that in mind.
+- A smooth-scroll library (Lenis) used to sit in front of all this and was removed: it
+  put a ~700ms dead zone in front of every scroll gesture. Native scroll responds in a
+  frame. Don't add it back.
+
+## The Rabbithole demo (`demo/rabbithole/`)
+
+A self-contained Obsidian-style reader linked from the Rabbithole project card — a
+vault tree, a markdown reader and a prerequisite graph over a real slice of the
+Economics notes, centred on Game Theory & Oligopoly.
+
+| File | What it is |
+|---|---|
+| `index.html` | Three-pane shell |
+| `notes.js` | **The content.** 14 notes: 5 with full bodies, 9 as stubs, plus the edge list |
+| `app.js` | Markdown renderer, tree, graph, hash router, icon set |
+| `rabbithole.css` | The dark-burrow theme |
+
+- **No dependencies at all**, not even a CDN. The portfolio can survive GSAP failing to
+  load; a demo whose whole job is rendering markdown can't survive its renderer failing,
+  so the markdown parser (~170 lines in `app.js`) and the graph (hand-authored SVG
+  positions, no physics lib) are both written out longhand.
+- `notes.js` is generated from the real vault rather than hand-copied. The bodies are
+  verbatim markdown with frontmatter pre-parsed into `fm`.
+- Graph node positions in `app.js`'s `LAYOUT` are **authored, not simulated** — a force
+  layout re-rolls the arrangement on every load, which would throw away the one thing
+  the graph exists to show: the spine running top-to-bottom from first principles down
+  to the frontier.
+- Navigation is entirely `location.hash`, so deep links and the back button work.
