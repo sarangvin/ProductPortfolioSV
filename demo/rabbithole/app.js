@@ -393,11 +393,47 @@
     $$(".adj", wrap).forEach(function (el) { el.classList.remove("adj"); });
   }
 
+  /* ---------------------------------------------------- SCORES */
+  /* importance / interest / confidence are editable. There's no backend, so
+     edits live in localStorage keyed by note path — without persistence,
+     dragging a slider and navigating away would silently lose the change. */
+  var EDITS_KEY = "rabbithole-edits";
+  var FIELDS = ["importance", "interest", "confidence"];
+
+  function loadEdits() {
+    try { return JSON.parse(localStorage.getItem(EDITS_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveEdit(path, field, value) {
+    var all = loadEdits();
+    (all[path] = all[path] || {})[field] = value;
+    try { localStorage.setItem(EDITS_KEY, JSON.stringify(all)); } catch (e) {}
+  }
+  function clearEdits(path) {
+    var all = loadEdits();
+    delete all[path];
+    try { localStorage.setItem(EDITS_KEY, JSON.stringify(all)); } catch (e) {}
+  }
+  function scoreOf(note, field) {
+    var edit = loadEdits()[note.path];
+    return (edit && edit[field] != null) ? edit[field] : (note.fm[field] || 0);
+  }
+  function isEdited(note) {
+    var edit = loadEdits()[note.path];
+    if (!edit) return false;
+    return FIELDS.some(function (f) {
+      return edit[f] != null && edit[f] !== (note.fm[f] || 0);
+    });
+  }
+
   /* ---------------------------------------------------- READER */
-  function meter(label, value) {
-    var dots = "";
-    for (var i = 1; i <= 5; i++) dots += '<i class="' + (i <= (value || 0) ? "on" : "") + '"></i>';
-    return '<span class="meter">' + escapeHtml(label) + '<span class="dots">' + dots + "</span></span>";
+  function meter(field, value) {
+    var pct = (value / 5) * 100;
+    return '<label class="meter" style="--fill:' + pct + '%">' +
+             '<span class="m-lbl">' + escapeHtml(field) + "</span>" +
+             '<input type="range" min="0" max="5" step="1" value="' + value + '" data-field="' + field + '">' +
+             '<output>' + value + "</output>" +
+           "</label>";
   }
 
   function renderNote(note) {
@@ -406,11 +442,10 @@
 
     html += '<div class="meta">' +
               '<span class="pill ' + fm.status + '">' + escapeHtml(fm.status) + "</span>" +
-              meter("importance", fm.importance) +
-              meter("interest", fm.interest) +
-              meter("confidence", fm.confidence) +
+              FIELDS.map(function (f) { return meter(f, scoreOf(note, f)); }).join("") +
               '<span class="mono">' + escapeHtml(fm.space) + "</span>" +
               (fm.last_reviewed ? '<span class="mono">reviewed ' + escapeHtml(fm.last_reviewed) + "</span>" : "") +
+              '<button class="reset" type="button" hidden>reset</button>' +
             "</div>";
 
     if (fm.prerequisites && fm.prerequisites.length) {
@@ -436,6 +471,39 @@
 
     $("#note").innerHTML = html;
     $("#reader").scrollTop = 0;
+    wireScores(note);
+  }
+
+  /* Sliders write straight to localStorage. `input` fires on drag and on
+     arrow keys, so keyboard editing works without any extra handling. */
+  function wireScores(note) {
+    var resetBtn = $(".reset", $("#note"));
+
+    function syncReset() { resetBtn.hidden = !isEdited(note); }
+
+    $$("#note .meter input").forEach(function (input) {
+      var label = input.parentNode;
+      input.addEventListener("input", function () {
+        var value = +input.value;
+        label.style.setProperty("--fill", (value / 5) * 100 + "%");
+        $("output", label).textContent = value;
+        saveEdit(note.path, input.getAttribute("data-field"), value);
+        syncReset();
+      });
+    });
+
+    resetBtn.addEventListener("click", function () {
+      clearEdits(note.path);
+      $$("#note .meter input").forEach(function (input) {
+        var value = note.fm[input.getAttribute("data-field")] || 0;
+        input.value = value;
+        input.parentNode.style.setProperty("--fill", (value / 5) * 100 + "%");
+        $("output", input.parentNode).textContent = value;
+      });
+      syncReset();
+    });
+
+    syncReset();
   }
 
   function renderCrumbs(note) {

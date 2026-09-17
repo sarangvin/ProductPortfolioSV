@@ -110,3 +110,8 @@ Economics notes, centred on Game Theory & Oligopoly.
   the graph exists to show: the spine running top-to-bottom from first principles down
   to the frontier.
 - Navigation is entirely `location.hash`, so deep links and the back button work.
+- **importance / interest / confidence are editable** — native `<input type=range>`
+  sliders, so keyboard and touch work for free. There's no backend, so edits persist
+  in `localStorage` under `rabbithole-edits`, keyed by note path; a `reset` button
+  appears on a note only once its values differ from the vault's. Clear the key to
+  wipe all edits.
